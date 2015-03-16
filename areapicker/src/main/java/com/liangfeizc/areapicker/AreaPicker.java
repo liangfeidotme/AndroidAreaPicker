@@ -58,6 +58,8 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
             picker.setVisibility(View.VISIBLE);
         }
 
+        picker.setValue(selectedIndex);
+
         areaChangeListener.onAreaChange(level, selectedIndex);
     }
 

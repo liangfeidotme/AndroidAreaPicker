@@ -40,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Utils.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sample/src/main/java/com/liangfeizc/areapicker/sample/Utils.java">
+      <file leaf-file-name="AreaPicker.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/areapicker/src/main/java/com/liangfeizc/areapicker/AreaPicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9188361" vertical-offset="760" max-vertical-offset="1640">
-              <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+            <state vertical-scroll-proportion="-0.6709511" vertical-offset="942" max-vertical-offset="2080">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1059,7 +1059,7 @@
         <entry key="$PROJECT_DIR$/../../CircleImageView" value="7117847878000" />
         <entry key="$PROJECT_DIR$/../../forks/AvatarView" value="5694892290000" />
         <entry key="$PROJECT_DIR$/../../forks/CircleImageView" value="5694831916000" />
-        <entry key="$PROJECT_DIR$" value="5704962806000" />
+        <entry key="$PROJECT_DIR$" value="5706006832000" />
         <entry key="$PROJECT_DIR$/../AndroidAvatarView" value="5695232036000" />
       </map>
     </option>
@@ -1535,10 +1535,10 @@
         <option value="$PROJECT_DIR$/sample/src/main/java/com/liangfeizc/areapicker/sample/pojo/ResponseData.java" />
         <option value="$PROJECT_DIR$/sample/src/main/java/com/liangfeizc/areapicker/sample/Utils.java" />
         <option value="$PROJECT_DIR$/sample/src/main/java/com/liangfeizc/areapicker/sample/MainActivity.java" />
-        <option value="$PROJECT_DIR$/areapicker/src/main/java/com/liangfeizc/areapicker/AreaPicker.java" />
         <option value="$PROJECT_DIR$/sample/src/main/assets/provinces.json" />
         <option value="$PROJECT_DIR$/sample/src/main/java/com/liangfeizc/areapicker/sample/pojo/Response.java" />
         <option value="$PROJECT_DIR$/sample/src/main/assets/cities.json" />
+        <option value="$PROJECT_DIR$/areapicker/src/main/java/com/liangfeizc/areapicker/AreaPicker.java" />
       </list>
     </option>
   </component>
@@ -1572,7 +1572,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1855,6 +1854,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2046,14 +2046,14 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15508685" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15508685" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2553648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2553648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="100" width="1240" height="700" />
@@ -2254,23 +2254,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/packages/android/sdk/sources/android-21/android/widget/NumberPicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6928021" vertical-offset="24881" max-vertical-offset="51900">
-          <caret line="1344" column="16" selection-start-line="1344" selection-start-column="16" selection-end-line="1344" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/areapicker/src/main/java/com/liangfeizc/areapicker/AreaPicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55130166" vertical-offset="1100" max-vertical-offset="2040">
-          <caret line="81" column="24" selection-start-line="81" selection-start-column="24" selection-end-line="81" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.76569676" vertical-offset="0" max-vertical-offset="660">
@@ -2331,8 +2314,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/src/main/java/com/liangfeizc/areapicker/sample/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9188361" vertical-offset="760" max-vertical-offset="1640">
-          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+        <state vertical-scroll-proportion="1.8471338" vertical-offset="0" max-vertical-offset="1640">
+          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/packages/android/sdk/sources/android-21/android/widget/NumberPicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6413882" vertical-offset="22401" max-vertical-offset="51900">
+          <caret line="1214" column="5" selection-start-line="1214" selection-start-column="5" selection-end-line="1214" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/areapicker/src/main/java/com/liangfeizc/areapicker/AreaPicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6709511" vertical-offset="942" max-vertical-offset="2080">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
