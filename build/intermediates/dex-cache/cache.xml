@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-7a9b93dda9b2c1557f44bcb34a877c5fa6384b4c.jar" />
+    </item>
+    <item
+        jar="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/pre-dexed/debug/classes-6d5cfb29b904731adc14cd2254b969d8e22eb6d1.jar" />
+    </item>
+    <item
+        jar="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/pre-dexed/debug/classes-967dc793feaa82957ee98edba05fe1166c819bfb.jar" />
+    </item>
+    <item
+        jar="/Users/liangfei/packages/android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-3ac954fcc2666796b890031c850633ecee95c86d.jar" />
+    </item>
+    <item
+        jar="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/exploded-aar/AndroidAreaPicker/areapicker/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4fb01d2d0abd65fb56e28d92f9ec67cb9efde88b">
+        <dex dex="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/pre-dexed/debug/classes-147f3b32cfc86d4e6d7fe6db63436d80fa67242f.jar" />
+    </item>
+    <item
+        jar="/Users/liangfei/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.4/fbcf8415e32859b473b336e5ac6422ee69b1185b/fastjson-1.2.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fbcf8415e32859b473b336e5ac6422ee69b1185b">
+        <dex dex="/Users/liangfei/Source/github/myprojects/AndroidAreaPicker/sample/build/intermediates/pre-dexed/debug/fastjson-1.2.4-991ab9e4c9f17209d1c0ec105315f341826fb27c.jar" />
+    </item>
+
+</items>
