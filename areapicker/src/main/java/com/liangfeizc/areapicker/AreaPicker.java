@@ -56,6 +56,10 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
             addView(picker);
         } else {
             picker.setVisibility(View.VISIBLE);
+            picker.setDisplayedValues(null);
+            picker.setMinValue(0);
+            picker.setMaxValue(areas.length - 1);
+            picker.setDisplayedValues(areas);
         }
 
         picker.setValue(selectedIndex);
