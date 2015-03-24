@@ -22,6 +22,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.alibaba:fastjson:latest.integration'
+    compile 'com.alibaba:fastjson:1.2.5'
     compile project(":areapicker")
 }

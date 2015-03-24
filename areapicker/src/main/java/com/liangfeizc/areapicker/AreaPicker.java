@@ -15,6 +15,8 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
     private static final String TAG = "AreaPicker";
 
     private static final int MAX_LEVEL = 3;
+    private static final int PICKER_WIDTH = 50;
+    private static final int PICKER_MARGIN = 5;
 
     private NumberPicker[] allNumberPickers;
     private OnAreaChangeListener areaChangeListener;
@@ -49,6 +51,10 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
             getChildAt(i).setVisibility(View.GONE);
         }
 
+        if (areas == null || areas.length == 0) {
+            return;
+        }
+
         NumberPicker picker = allNumberPickers[level];
         if (picker == null) {
             picker = createNumberPicker(areas, level);
@@ -63,7 +69,7 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
         }
 
         picker.setValue(selectedIndex);
-
+        picker.setEnabled(true);
         areaChangeListener.onAreaChange(level, selectedIndex);
     }
 
@@ -101,6 +107,14 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
         int level = (int) picker.getTag();
+        for (int i = level + 1; i < MAX_LEVEL && allNumberPickers[i] != null; i++) {
+            allNumberPickers[i].setDisplayedValues(null);
+            allNumberPickers[i].setMinValue(0);
+            allNumberPickers[i].setMaxValue(0);
+            allNumberPickers[i].setEnabled(false);
+            allNumberPickers[i].setDisplayedValues(new String[] { "loading" });
+        }
+
         areaChangeListener.onAreaChange(level, newVal);
     }
 
