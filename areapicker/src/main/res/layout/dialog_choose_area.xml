@@ -15,9 +15,7 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/white"
         app:tabIndicatorColor="@color/tab_theme_color"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/tab_selected_text_color"
-        app:tabTextColor="@color/tab_unselected_text_color"/>
+        app:tabMode="scrollable"/>
 
     <TextView
         android:id="@+id/button_area_choose_ok"

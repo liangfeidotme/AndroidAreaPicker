@@ -15,6 +15,7 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
     private List<String> titles;
     private AreaModel[] selectedAreaModels;
     private AreaListFragment[] fragments;
+    private boolean isAreaChanged;
 
     public AreaFragmentPagerAdapter(FragmentManager fm, List<String> titles) {
         super(fm);
@@ -70,17 +71,27 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
             fragments[nextPosition].setAreaModels(pickedAreaModel.subAreas);
         }
 
-        if (!pickedAreaModel.equals(selectedAreaModels[pagePosition])) {
+        isAreaChanged = !pickedAreaModel.equals(selectedAreaModels[pagePosition]);
+        // area changed
+        if (isAreaChanged) {
             selectedAreaModels[pagePosition] = pickedAreaModel;
             if (pickedAreaModel.subAreas != null) {
                 for (AreaModel area : pickedAreaModel.subAreas) {
                     area.isSelected = false;
                 }
             }
+
+            for (int i = pagePosition + 1, size = getCount(); i < size; i++) {
+                selectedAreaModels[i] = null;
+            }
         }
 
         if (onAreaPickedListener != null) {
             onAreaPickedListener.onPicked(pagePosition, pickedAreaModel);
         }
+    }
+
+    public boolean isAreaChanged() {
+        return isAreaChanged;
     }
 }

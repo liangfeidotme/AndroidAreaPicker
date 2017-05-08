@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -37,7 +38,6 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
     private TextView okButton;
     private AreaModel areaModel;
 
-    private AreaModel[] selectedAreaModels;
     private List<String> tabTitles;
 
     public static ZanAreaPicker create(AreaModel areaModel) {
@@ -90,8 +90,6 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.setCurrentItem(0);
 
-        selectedAreaModels = new AreaModel[pagerAdapter.getCount()];
-
         okButton = (TextView) view.findViewById(R.id.button_area_choose_ok);
         okButton.setOnClickListener(this);
         okButton.setEnabled(false);
@@ -141,14 +139,18 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
     }
 
     public void refreshTabHeaderStatus(int pagePosition, AreaModel pickedAreaModel) {
-        tabLayout.getTabAt(pagePosition).setText(pickedAreaModel.name);
-        AreaModel[] selectedAreas = pagerAdapter.getSelectedAreaModels();
-        for (int i = pagePosition + 1; i < selectedAreas.length; i++) {
-            tabLayout.getTabAt(i).setText(tabTitles.get(i));
+        ensureTabCustomView(tabLayout.getTabAt(pagePosition)).setText(pickedAreaModel.name);
+
+        if (pagerAdapter.isAreaChanged()) {
+            AreaModel[] selectedAreas = pagerAdapter.getSelectedAreaModels();
+            for (int i = pagePosition + 1; i < selectedAreas.length; i++) {
+                ensureTabCustomView(tabLayout.getTabAt(i)).setText(tabTitles.get(i));
+            }
         }
 
         // disable the following tabs
         LinearLayout tabStrip = ((LinearLayout) tabLayout.getChildAt(0));
+        AreaModel[] selectedAreaModels = pagerAdapter.getSelectedAreaModels();
         for (int i = 0; i < selectedAreaModels.length; i++) {
             final AreaModel area = selectedAreaModels[i];
             tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
@@ -157,7 +159,18 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
                     return area == null;
                 }
             });
+
+            ensureTabCustomView(tabLayout.getTabAt(i)).setTextColor(area != null ?
+                    ContextCompat.getColor(getContext(), R.color.tab_selected_text_color) :
+                    ContextCompat.getColor(getContext(), R.color.tab_unselected_text_color));
         }
+    }
+
+    private TextView ensureTabCustomView(TabLayout.Tab tab) {
+        if (tab.getCustomView() == null) {
+            tab.setCustomView(R.layout.area_picker_custom_tab);
+        }
+        return (TextView) tab.getCustomView();
     }
 
     @Override

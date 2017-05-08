@@ -1,11 +1,9 @@
 package com.liangfeizc.areapicker.zui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -45,6 +43,8 @@ public class AreaListFragment extends ListFragment {
             adapter.addAll(areaModels);
         }
         setListAdapter(adapter);
+
+        getListView().setDivider(null);
     }
 
     @Override

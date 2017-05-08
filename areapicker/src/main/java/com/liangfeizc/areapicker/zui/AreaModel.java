@@ -23,6 +23,7 @@ public class AreaModel {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) return false;
         if (obj instanceof AreaModel) {
             AreaModel other = (AreaModel) obj;
             return id == other.id || TextUtils.equals(name, other.name);
