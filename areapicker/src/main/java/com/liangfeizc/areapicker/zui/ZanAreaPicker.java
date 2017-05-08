@@ -12,13 +12,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.liangfeizc.areapicker.R;
@@ -26,7 +27,8 @@ import com.liangfeizc.areapicker.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZanAreaPicker extends DialogFragment implements View.OnClickListener, OnAreaPickedListener {
+public class ZanAreaPicker extends DialogFragment implements View.OnClickListener,
+        OnAreaPickedListener {
     public static final String TAG = "ZanAreaPicker";
 
     private TabLayout tabLayout;
@@ -34,6 +36,9 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
     private AreaFragmentPagerAdapter pagerAdapter;
     private TextView okButton;
     private AreaModel areaModel;
+
+    private AreaModel[] selectedAreaModels;
+    private List<String> tabTitles;
 
     public static ZanAreaPicker create(AreaModel areaModel) {
         ZanAreaPicker picker = new ZanAreaPicker();
@@ -71,33 +76,21 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
         // interactions
         tabLayout.setupWithViewPager(viewPager);
 
-        List<String> titles = new ArrayList<>();
-        titles.add(getString(R.string.province));
-        titles.add(getString(R.string.city));
-        titles.add(getString(R.string.area));
-        pagerAdapter = new AreaFragmentPagerAdapter(getChildFragmentManager(), titles);
+        tabTitles = new ArrayList<>();
+        tabTitles.add(getString(R.string.province));
+        tabTitles.add(getString(R.string.city));
+        tabTitles.add(getString(R.string.area));
+
+        pagerAdapter = new AreaFragmentPagerAdapter(getChildFragmentManager(), tabTitles);
         pagerAdapter.setOnAreaPickedListener(this);
         pagerAdapter.setInitialAreaModels(areaModel.subAreas);
 
         viewPager.setAdapter(pagerAdapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.d(TAG, "view pager pos:" + position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
         viewPager.setCurrentItem(0);
+
+        selectedAreaModels = new AreaModel[pagerAdapter.getCount()];
 
         okButton = (TextView) view.findViewById(R.id.button_area_choose_ok);
         okButton.setOnClickListener(this);
@@ -144,12 +137,38 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        dismiss();
+    }
 
+    public void refreshTabHeaderStatus(int pagePosition, AreaModel pickedAreaModel) {
+        tabLayout.getTabAt(pagePosition).setText(pickedAreaModel.name);
+        AreaModel[] selectedAreas = pagerAdapter.getSelectedAreaModels();
+        for (int i = pagePosition + 1; i < selectedAreas.length; i++) {
+            tabLayout.getTabAt(i).setText(tabTitles.get(i));
+        }
+
+        // disable the following tabs
+        LinearLayout tabStrip = ((LinearLayout) tabLayout.getChildAt(0));
+        for (int i = 0; i < selectedAreaModels.length; i++) {
+            final AreaModel area = selectedAreaModels[i];
+            tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return area == null;
+                }
+            });
+        }
     }
 
     @Override
     public void onPicked(int pagePosition, AreaModel pickedAreaModel) {
-        Log.d(TAG, "ZanAreaPicker#onPicked");
-        viewPager.setCurrentItem(pagePosition + 1, true);
+        refreshTabHeaderStatus(pagePosition, pickedAreaModel);
+
+        int currentPosition = pagePosition + 1;
+        boolean hasMore = currentPosition < pagerAdapter.getCount();
+        okButton.setEnabled(!hasMore);
+        if (hasMore) {
+            viewPager.setCurrentItem(currentPosition, true);
+        }
     }
 }

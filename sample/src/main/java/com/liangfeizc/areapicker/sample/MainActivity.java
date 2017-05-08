@@ -11,10 +11,9 @@ import android.widget.PopupWindow;
 import com.google.gson.Gson;
 import com.liangfeizc.areapicker.tb.AreaPicker;
 import com.liangfeizc.areapicker.zui.AreaModel;
-import com.liangfeizc.areapicker.zui.FileUtils;
+import com.liangfeizc.areapicker.utils.FileUtils;
 import com.liangfeizc.areapicker.zui.ZanAreaPicker;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

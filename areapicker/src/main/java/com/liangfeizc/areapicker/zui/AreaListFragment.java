@@ -11,9 +11,7 @@ import android.widget.ListView;
 import java.util.List;
 
 
-public class AreaListFragment extends ListFragment implements AdapterView.OnItemClickListener {
-    public static final String EXTRA_KEY_PAGE_INDEX = "extra_page_index";
-
+public class AreaListFragment extends ListFragment {
     private AreaListAdapter adapter;
     private OnAreaPickedListener onAreaPickedListener;
     private List<AreaModel> areaModels;
@@ -23,18 +21,6 @@ public class AreaListFragment extends ListFragment implements AdapterView.OnItem
         AreaListFragment fragment = new AreaListFragment();
         fragment.pageIndex = pageIndex;
         return fragment;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(EXTRA_KEY_PAGE_INDEX, pageIndex);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle outState) {
-        super.onActivityCreated(outState);
-        pageIndex = outState != null ? outState.getInt(EXTRA_KEY_PAGE_INDEX) : 0;
     }
 
     public void setAreaModels(List<AreaModel> areaModels) {
@@ -59,13 +45,6 @@ public class AreaListFragment extends ListFragment implements AdapterView.OnItem
             adapter.addAll(areaModels);
         }
         setListAdapter(adapter);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (onAreaPickedListener != null) {
-            onAreaPickedListener.onPicked(pageIndex, adapter.getItem(position));
-        }
     }
 
     @Override
