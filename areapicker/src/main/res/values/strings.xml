@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">areapicker</string>
+    <string name="ok">确认</string>
+    <string name="province">省份</string>
+    <string name="city">城市</string>
+    <string name="area">区县</string>
 </resources>

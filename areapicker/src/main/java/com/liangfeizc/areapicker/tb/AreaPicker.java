@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker;
+package com.liangfeizc.areapicker.tb;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
-/**
- * Created by liangfei on 3/12/15.
- */
 public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChangeListener {
     private static final String TAG = "AreaPicker";
 

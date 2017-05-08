@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.liangfeizc.areapicker.AreaPicker;
+import com.google.gson.Gson;
+import com.liangfeizc.areapicker.tb.AreaPicker;
+import com.liangfeizc.areapicker.zui.AreaModel;
+import com.liangfeizc.areapicker.zui.FileUtils;
+import com.liangfeizc.areapicker.zui.ZanAreaPicker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -67,6 +72,12 @@ public class MainActivity extends ActionBarActivity implements AreaPicker.OnArea
             root.next = new AreaNode(subAreas, null);
             areaPicker.setData(Utils.extractNames(subAreas), 0, level + 1);
         }
+    }
+
+    public void zuiAreaClick(View view) {
+        String jsonStr = FileUtils.readAssetFileToString(this, "areas.json");
+        AreaModel areaModel = new Gson().fromJson(jsonStr, AreaModel.class);
+        ZanAreaPicker.create(areaModel).show(getSupportFragmentManager(), ""); // why empty string
     }
 
     public class AreaNode {
