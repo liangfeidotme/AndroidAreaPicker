@@ -45,6 +45,7 @@ public class AreaListFragment extends ListFragment {
         setListAdapter(adapter);
 
         getListView().setDivider(null);
+        getListView().setVerticalScrollBarEnabled(false);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class AreaListFragment extends ListFragment {
         Log.d(ZanAreaPicker.TAG, "AreaListFragment#onListItemClick(" + pageIndex + ")");
         adapter.setSelected(position);
         if (onAreaPickedListener != null) {
-            onAreaPickedListener.onPicked(pageIndex, (AreaModel) l.getItemAtPosition(position));
+            onAreaPickedListener.onAreaPicked(pageIndex, (AreaModel) l.getItemAtPosition(position));
         }
     }
 }

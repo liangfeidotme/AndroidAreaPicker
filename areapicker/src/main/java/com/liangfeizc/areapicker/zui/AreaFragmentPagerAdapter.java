@@ -65,7 +65,7 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
     }
 
     @Override
-    public void onPicked(int pagePosition, AreaModel pickedAreaModel) {
+    public void onAreaPicked(int pagePosition, AreaModel pickedAreaModel) {
         final int nextPosition = pagePosition + 1;
         if (nextPosition < fragments.length) {
             fragments[nextPosition].setAreaModels(pickedAreaModel.subAreas);
@@ -87,8 +87,12 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
         }
 
         if (onAreaPickedListener != null) {
-            onAreaPickedListener.onPicked(pagePosition, pickedAreaModel);
+            onAreaPickedListener.onAreaPicked(pagePosition, pickedAreaModel);
         }
+    }
+
+    public void setAreaChanged(boolean changed) {
+        isAreaChanged = changed;
     }
 
     public boolean isAreaChanged() {
