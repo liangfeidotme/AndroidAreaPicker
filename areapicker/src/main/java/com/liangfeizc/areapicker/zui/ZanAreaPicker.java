@@ -13,6 +13,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,13 +126,14 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.setCurrentItem(0);
 
+        pagerAdapter.setAreaChanged(true);
+        refreshTabHeaderStatus(-1, null);
+
         pagerAdapter.setInitialAreaModels(areaModel.subAreas, addressParts);
 
         view.findViewById(R.id.separator).setVisibility(
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? View.GONE : View.VISIBLE);
 
-        pagerAdapter.setAreaChanged(true);
-        refreshTabHeaderStatus(-1, null);
 
         /* 动画 */
         getDialog().getWindow().setWindowAnimations(R.style.areaAnim);
@@ -178,13 +180,17 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
     }
 
     public void refreshTabHeaderStatus(int pagePosition, AreaModel pickedAreaModel) {
+        Log.d(TAG, "refreshTabHeaderStatus(");
+
         if (pickedAreaModel != null && pagePosition >= 0) {
+            Log.d(TAG, "refreshTabHeaderStatus(" + pagePosition + ", " + pickedAreaModel.name + ")");
             ensureTabCustomView(tabLayout.getTabAt(pagePosition)).setText(pickedAreaModel.name);
         }
 
         if (pagerAdapter.isAreaChanged()) {
             AreaModel[] selectedAreas = pagerAdapter.getSelectedAreaModels();
             for (int i = pagePosition + 1; i < selectedAreas.length; i++) {
+                Log.d(TAG, "isAreaChanged from " + (pagePosition + 1));
                 ensureTabCustomView(tabLayout.getTabAt(i)).setText(tabTitles.get(i));
             }
         }
