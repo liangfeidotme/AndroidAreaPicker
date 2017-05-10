@@ -4,6 +4,7 @@ package com.liangfeizc.areapicker.zui;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.TextUtils;
 
 import java.util.List;
 
@@ -20,21 +21,25 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
     public AreaFragmentPagerAdapter(FragmentManager fm, List<String> titles) {
         super(fm);
         this.titles = titles;
-        fragments = new AreaListFragment[titles.size()];
+
+        final int count = titles.size();
         selectedAreaModels = new AreaModel[titles.size()];
+
+        fragments = new AreaListFragment[titles.size()];
+
+        for (int i = 0; i < count; i++) {
+            fragments[i] = AreaListFragment.newInstance(i);
+            fragments[i].setOnAreaPickedListener(this);
+        }
     }
 
     @Override
     public Fragment getItem(int position) {
-        AreaListFragment fragment = AreaListFragment.newInstance(position);
-        fragment.setOnAreaPickedListener(this);
-        fragments[position] = fragment;
-
         // setup area list in the first page.
         if (position == 0) {
-            fragment.setAreaModels(initialAreaModels);
+            fragments[0].setAreaModels(initialAreaModels);
         }
-        return fragment;
+        return fragments[position];
     }
 
     @Override
@@ -43,17 +48,33 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
     public int getCount() {
-        return titles == null ? 0 : titles.size();
+        int showingCount = 0;
+        for (int i = 0; i < selectedAreaModels.length; i++) {
+            showingCount = i + 1;
+            if (selectedAreaModels[i] == null) {
+                break;
+            }
+        }
+
+        return showingCount;
     }
 
-    public void setInitialAreaModels(List<AreaModel> areaModels) {
+    public void setInitialAreaModels(List<AreaModel> areaModels, List<String> addressParts) {
         initialAreaModels = areaModels;
+        List<AreaModel> areas = areaModels;
+        for (int i = 0, size = addressParts.size(); i < size; i++) {
+            for (AreaModel area : areas) {
+                if (TextUtils.equals(addressParts.get(i), area.name)) {
+                    area.isSelected = true;
+                    selectedAreaModels[i] = area;
+                    fragments[i].setAreaModels(areas);
+                    areas = area.subAreas;
+                    onAreaPicked(i, area);
+                    break;
+                }
+            }
+        }
     }
 
     public void setOnAreaPickedListener(OnAreaPickedListener onAreaPickedListener) {
@@ -85,6 +106,8 @@ public class AreaFragmentPagerAdapter extends FragmentPagerAdapter implements On
                 selectedAreaModels[i] = null;
             }
         }
+
+        notifyDataSetChanged();
 
         if (onAreaPickedListener != null) {
             onAreaPickedListener.onAreaPicked(pagePosition, pickedAreaModel);

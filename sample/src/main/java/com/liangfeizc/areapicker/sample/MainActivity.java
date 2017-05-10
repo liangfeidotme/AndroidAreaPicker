@@ -3,10 +3,12 @@ package com.liangfeizc.areapicker.sample;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.liangfeizc.areapicker.tb.AreaPicker;
@@ -14,6 +16,8 @@ import com.liangfeizc.areapicker.zui.AreaModel;
 import com.liangfeizc.areapicker.utils.FileUtils;
 import com.liangfeizc.areapicker.zui.ZanAreaPicker;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -24,10 +28,14 @@ public class MainActivity extends ActionBarActivity implements AreaPicker.OnArea
     private List<Area> mainAreas;
     private AreaNode rootAreaNode;
 
+    private TextView addressView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        addressView = (TextView) findViewById(R.id.area);
 
         mainAreas = Utils.getMainAreas(this);
         rootAreaNode = new AreaNode();
@@ -76,7 +84,20 @@ public class MainActivity extends ActionBarActivity implements AreaPicker.OnArea
     public void zuiAreaClick(View view) {
         String jsonStr = FileUtils.readAssetFileToString(this, "areas.json");
         AreaModel areaModel = new Gson().fromJson(jsonStr, AreaModel.class);
-        ZanAreaPicker.create(areaModel).show(getSupportFragmentManager(), ""); // why empty string
+        final List<String> selAreas = Arrays.asList(addressView.getText().toString().split(" "));
+        ZanAreaPicker areaPicker = ZanAreaPicker.create(areaModel);
+        areaPicker.setAddressParts(selAreas);
+        areaPicker.setOnPickAreaListener(new ZanAreaPicker.OnPickAreaListener() {
+            @Override
+            public void onPick(List<AreaModel> areas) {
+                List<String> names = new ArrayList<>(areas.size());
+                for (AreaModel area : areas) {
+                    names.add(area.name);
+                }
+                addressView.setText(TextUtils.join(" ", names));
+            }
+        });
+        areaPicker.show(getSupportFragmentManager(), "");
     }
 
     public class AreaNode {
