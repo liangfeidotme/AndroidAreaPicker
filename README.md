@@ -1,3 +1,6 @@
 # AndroidAreaPicker
 
-A custom area picker which extends NumberPicker supporting multiple level areas
+级联选择器
+
+### TODO
+* [ ] 通用化
