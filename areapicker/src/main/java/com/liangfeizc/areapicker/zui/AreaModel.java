@@ -1,7 +1,7 @@
 package com.liangfeizc.areapicker.zui;
 
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;

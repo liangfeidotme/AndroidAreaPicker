@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
 public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChangeListener {
-    private static final String TAG = "AreaPicker";
+    private static final String TAG = "RFAreaPicker";
 
     private static final int MAX_LEVEL = 3;
     private static final int PICKER_WIDTH = 50;
