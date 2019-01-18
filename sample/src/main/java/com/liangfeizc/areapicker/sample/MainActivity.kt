@@ -8,10 +8,16 @@ import me.liangfei.areapicker.RFAreaPicker
 
 import android.text.TextUtils
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 
 import com.google.gson.Gson
 import com.liangfeizc.areapicker.tb.AreaPicker
@@ -24,6 +30,8 @@ import java.util.Arrays
 
 
 class MainActivity : AppCompatActivity(), AreaPicker.OnAreaChangeListener {
+    private lateinit var mDrawerLayout: DrawerLayout
+
     private var areaPicker: AreaPicker? = null
     private var areaPickerWindow: PopupWindow? = null
 
@@ -37,15 +45,49 @@ class MainActivity : AppCompatActivity(), AreaPicker.OnAreaChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        addressView = findViewById<View>(R.id.area) as TextView
-        addressView!!.setOnClickListener { v -> zuiAreaClick(v) }
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        mainAreas = Utils.getMainAreas(this)
-        rootAreaNode = AreaNode()
-        rootAreaNode!!.next = AreaNode(mainAreas, null)
+        mDrawerLayout = findViewById(R.id.drawer_layout)
 
-        ktAddressView = findViewById(R.id.ktAddress)
-        ktAddressView.setOnClickListener { showAreaPickerKt() }
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            // set item as selected to persist highlight
+            menuItem.isChecked = true
+            // close drawer when item is tapped
+            mDrawerLayout.closeDrawers()
+
+            // Add code here to update the UI based on the item selected
+            // For example, swap UI fragments here
+
+            true
+        }
+
+        val actionbar: ActionBar? = supportActionBar
+        actionbar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+        }
+//
+//        addressView = findViewById<View>(R.id.area) as TextView
+//        addressView!!.setOnClickListener { v -> zuiAreaClick(v) }
+//
+//        mainAreas = Utils.getMainAreas(this)
+//        rootAreaNode = AreaNode()
+//        rootAreaNode!!.next = AreaNode(mainAreas, null)
+//
+//        ktAddressView = findViewById(R.id.ktAddress)
+//        ktAddressView.setOnClickListener { showAreaPickerKt() }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                mDrawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun areaClick(view: View) {
