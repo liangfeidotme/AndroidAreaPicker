@@ -84,10 +84,10 @@ public class ZanAreaPicker extends DialogFragment implements View.OnClickListene
                              @Nullable Bundle savedInstanceState) {
         // views
         View view = inflater.inflate(R.layout.dialog_choose_area, null, false);
-        tabLayout = (TabLayout) view.findViewById(R.id.area_tablayout);
-        viewPager = (ViewPager) view.findViewById(R.id.area_viewpager);
+        tabLayout = view.findViewById(R.id.area_tablayout);
+        viewPager = view.findViewById(R.id.area_viewpager);
 
-        okBtn = (TextView) view.findViewById(R.id.button_area_choose_ok);
+        okBtn = view.findViewById(R.id.button_area_choose_ok);
         okBtn.setOnClickListener(this);
         okBtn.setEnabled(false);
 

@@ -2,6 +2,7 @@ package me.liangfei.areapicker
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +18,18 @@ import com.liangfeizc.areapicker.R
  * Created by LIANG.FEI on 16/1/2019.
  */
 
+internal const val TAG = "AreaPicker"
+
 internal typealias AreaPickListenerInner = ((Int, RFAreaModel) -> Unit)
 
 internal class RFAreaListFragment : ListFragment() {
+    companion object {
+        fun newInstance(pageIndex: Int) =
+                RFAreaListFragment().apply {
+                    this.pageIndex = pageIndex
+                }
+    }
+
     private var pageIndex: Int = 0
 
     private lateinit var adapter: RFAreaListAdapter
@@ -38,15 +48,12 @@ internal class RFAreaListFragment : ListFragment() {
             }
         }
 
-    companion object {
-        fun newInstance(pageIndex: Int) =
-                RFAreaListFragment().apply {
-                    this.pageIndex = pageIndex
-                }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Log.d(TAG, "onViewCreated @RFAreaListFragment")
+
         adapter = RFAreaListAdapter(activity!!).apply {
             clear()
             areaModels?.let { addAll(it) }

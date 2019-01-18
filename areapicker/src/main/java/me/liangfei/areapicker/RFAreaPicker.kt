@@ -5,7 +5,9 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -19,32 +21,52 @@ import com.liangfeizc.areapicker.R
  * Created by LIANG.FEI on 16/1/2019.
  */
 
+/**
+ * Data class for an area unit.
+ */
 data class RFAreaModel(val id: Long,
                        val name: String,
                        val subList: List<RFAreaModel>?,
                        var isSelected: Boolean)
 
+/**
+ * Picker.
+ */
 class RFAreaPicker : DialogFragment() {
-    var addressParts: List<String> = emptyList()
-    var areaModel: RFAreaModel? = null
-    var tabTitles = mutableListOf<String>()
-
-
     companion object {
         @JvmStatic
-        fun create(areaModel: RFAreaModel) = RFAreaPicker().apply { this.areaModel = areaModel }
+        fun create(areaModel: RFAreaModel) =
+                RFAreaPicker().apply {
+                    this.areaModel = areaModel
+                }
     }
 
-    private val displayHeight: Int
-        get() {
-            val dm = DisplayMetrics()
-            activity?.windowManager?.defaultDisplay?.getMetrics(dm)
-            return dm.heightPixels
-        }
+    /**
+     * Title of each tab.
+     */
+    private var tabTitles = mutableListOf<String>()
 
+    /**
+     * Area parts for initialization.
+     */
+    var addressParts: List<String> = emptyList()
+
+    /**
+     * Area model to store areas.
+     */
+    var areaModel: RFAreaModel? = null
+
+
+    /**
+     * UI elements.
+     */
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private lateinit var okBtn: TextView
+
+    /**
+     * Fragment pager adapter.
+     */
     private lateinit var pagerAdapter: AreaFragmentPagerAdapter
 
     override fun onCreateDialog(savedInstanceState: Bundle?) =
@@ -62,60 +84,74 @@ class RFAreaPicker : DialogFragment() {
             }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?) =
-            inflater.inflate(R.layout.dialog_choose_area, null, false).also { view ->
-                tabLayout = view.findViewById(R.id.area_tablayout)
-                viewPager = view.findViewById(R.id.area_viewpager)
-                okBtn = view.findViewById<TextView>(R.id.button_area_choose_ok).apply {
-                    setOnClickListener {
-                        areaPickListener(pagerAdapter.selectedAreaModels.filterNotNull());
-                        dismiss()
-                    }
-                    isEnabled = false
-                }
+                              savedInstanceState: Bundle?): View {
 
-                tabTitles.apply {
-                    add(getString(R.string.province))
-                    add(getString(R.string.city))
-                    add(getString(R.string.area))
+        val view = inflater.inflate(R.layout.dialog_choose_area, null, false)
 
-                    forEachIndexed { index, _ ->
-                        tabLayout.addTab(tabLayout.newTab().setTag(index))
-                    }
-                }
-
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        tab?.let { viewPager.setCurrentItem(tab.tag as Int, true) }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {}
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {}
-
-                })
-
-                pagerAdapter = AreaFragmentPagerAdapter(childFragmentManager, tabTitles).apply {
-                    areaPickedListenerInner = this@RFAreaPicker.areaPickedListenerInner
-                }
-
-                viewPager.apply {
-                    adapter = pagerAdapter
-                    addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-                    currentItem = 0
-                }
-
-                pagerAdapter.isAreaChanged = true
-
-                refreshTabHeaderStatus(-1, null)
-
-                areaModel?.subList?.let {
-                    pagerAdapter.initAreaModels(it, addressParts)
-                }
-
-                dialog?.window?.setWindowAnimations(R.style.areaAnim)
-                dimBackground(activity!!, 1.0f, 0.5f)
+        // Initialize UI elements.
+        tabLayout = view.findViewById(R.id.area_tablayout)
+        viewPager = view.findViewById(R.id.area_viewpager)
+        okBtn = view.findViewById<TextView>(R.id.button_area_choose_ok).apply {
+            setOnClickListener {
+                areaPickListener(pagerAdapter.selectedAreaModels.filterNotNull())
+                dismiss()
             }
+            isEnabled = false
+        }
+
+        // Initialize tab titles.
+        tabTitles.apply {
+            add(getString(R.string.province))
+            add(getString(R.string.city))
+            add(getString(R.string.area))
+
+            forEachIndexed { index, _ ->
+                tabLayout.addTab(tabLayout.newTab().setTag(index))
+            }
+        }
+
+        // Tab listener to switch pagers.
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    viewPager.setCurrentItem(tab.tag as Int, true)
+                    Log.d(TAG, "onTabSelected with ${tab.tag}")
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+        })
+
+        // Initialize pager adapter.
+        pagerAdapter = AreaFragmentPagerAdapter(childFragmentManager, tabTitles).apply {
+            areaPickedListenerInner = this@RFAreaPicker.areaPickedListenerInner
+        }
+
+        // Initialize view pager.
+        viewPager.apply {
+            adapter = pagerAdapter
+            addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+            currentItem = 0
+        }
+
+        // Notify area change.
+        pagerAdapter.isAreaChanged = true
+
+        refreshTabHeaderStatus(-1, null)
+
+        areaModel?.subList?.let {
+            pagerAdapter.initAreaModels(it, addressParts)
+        }
+
+        // UI effects (not important).
+        dialog?.window?.setWindowAnimations(R.style.areaAnim)
+        dimBackground(activity!!, 1.0f, 0.5f)
+
+        return view
+    }
 
     var areaPickListener: (List<RFAreaModel>) -> Unit = {}
 
@@ -142,8 +178,8 @@ class RFAreaPicker : DialogFragment() {
         }
 
         if (pagerAdapter.isAreaChanged) {
-            pagerAdapter.selectedAreaModels.forEachIndexed { index, _ ->
-                ensureTabCustomView(tabLayout.getTabAt(index)!!).text = tabTitles[index]
+            for (i in pagePosition + 1 until pagerAdapter.selectedAreaModels.size) {
+                ensureTabCustomView(tabLayout.getTabAt(i)!!).text = tabTitles[i]
             }
         }
 
@@ -185,12 +221,21 @@ class RFAreaPicker : DialogFragment() {
         dimBackground(activity!!, 0.5f, 1.0f)
         super.onDismiss(dialog)
     }
+
+    private val displayHeight: Int
+        get() {
+            val dm = DisplayMetrics()
+            activity?.windowManager?.defaultDisplay?.getMetrics(dm)
+            return dm.heightPixels
+        }
 }
 
 /**
  * The adapter of the fragment pager.
  */
-class AreaFragmentPagerAdapter(fm: FragmentManager, private var titles: List<String>) : FragmentPagerAdapter(fm) {
+class AreaFragmentPagerAdapter(fm: FragmentManager, private var titles: List<String>)
+    : FragmentPagerAdapter(fm) {
+
     private var initialAreaModels: List<RFAreaModel>? = null
 
     var selectedAreaModels: Array<RFAreaModel?> = arrayOfNulls(titles.size)
@@ -224,10 +269,13 @@ class AreaFragmentPagerAdapter(fm: FragmentManager, private var titles: List<Str
         }
     }
 
-    fun initAreaModels(RFAreaModels: List<RFAreaModel>, addressParts: List<String>) {
-        initialAreaModels = RFAreaModels
-        var areas: List<RFAreaModel>? = RFAreaModels
+    /**
+     * 初始化 area models
+     */
+    fun initAreaModels(areaModels: List<RFAreaModel>, addressParts: List<String>) {
+        initialAreaModels = areaModels
 
+        var areas: List<RFAreaModel>? = areaModels
         for (i in 0 until addressParts.size) {
             areas?.firstOrNull {
                 it.name == addressParts[i]
@@ -236,15 +284,18 @@ class AreaFragmentPagerAdapter(fm: FragmentManager, private var titles: List<Str
             }?.let {
                 selectedAreaModels[i] = it
                 fragments[i].areaModels = areas
-                areas = it.subList
                 areaPickListenerInterceptor(i, it)
+                areas = it.subList
             }
         }
     }
 
     override fun getPageTitle(position: Int) = titles[position]
 
-    override fun getCount() = selectedAreaModels.indexOfFirst { it == null } + 1
+    override fun getCount(): Int {
+        val indexOfFirstNull = selectedAreaModels.indexOfFirst { it == null }
+        return if (indexOfFirstNull == -1) selectedAreaModels.size else indexOfFirstNull + 1
+    }
 
     override fun getItem(position: Int): Fragment {
         if (position == 0) fragments[0].areaModels = initialAreaModels
