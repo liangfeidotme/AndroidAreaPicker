@@ -1,11 +1,11 @@
-package com.liangfeizc.areapicker.sample;
+package me.liangfei.areapicker.sample;
 
 import android.content.Context;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.liangfeizc.areapicker.sample.pojo.Response;
-import com.liangfeizc.areapicker.sample.pojo.ResponseData;
+import me.liangfei.areapicker.sample.pojo.Response;
+import me.liangfei.areapicker.sample.pojo.ResponseData;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.sample
+package me.liangfei.areapicker.sample
 
 import android.os.Bundle
 import android.view.LayoutInflater

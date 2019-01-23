@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.sample
+package me.liangfei.areapicker.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.liangfeizc.areapicker.sample.databinding.ActivityMainBinding
+import me.liangfei.areapicker.sample.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {

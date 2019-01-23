@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.sample.pojo;
+package me.liangfei.areapicker.sample.pojo;
 
 public class Response {
     public ResponseData data;

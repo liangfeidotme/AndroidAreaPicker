@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.tb;
+package me.liangfei.areapicker.light;
 
 import android.content.Context;
 import android.graphics.Color;

@@ -12,7 +12,6 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.ListFragment
-import com.liangfeizc.areapicker.R
 
 /**
  * Created by LIANG.FEI on 16/1/2019.

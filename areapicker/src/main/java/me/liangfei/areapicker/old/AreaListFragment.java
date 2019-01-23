@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.zui;
+package me.liangfei.areapicker.old;
 
 import android.os.Bundle;
 import androidx.fragment.app.ListFragment;

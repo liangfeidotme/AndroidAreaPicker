@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.zui;
+package me.liangfei.areapicker.old;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;

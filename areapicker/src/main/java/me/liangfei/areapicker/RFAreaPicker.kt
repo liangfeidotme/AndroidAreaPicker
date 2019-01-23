@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.*
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.liangfeizc.areapicker.R
 
 /**
  * Created by LIANG.FEI on 16/1/2019.

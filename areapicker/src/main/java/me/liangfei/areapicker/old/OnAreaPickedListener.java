@@ -1,4 +1,4 @@
-package com.liangfeizc.areapicker.zui;
+package me.liangfei.areapicker.old;
 
 
 public interface OnAreaPickedListener {
