@@ -1,5 +1,7 @@
 # AndroidAreaPicker
 
+> under deployment now.
+
 地址选择器，多种样式
 
 ## TODO

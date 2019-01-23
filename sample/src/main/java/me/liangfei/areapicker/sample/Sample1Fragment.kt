@@ -1,10 +1,13 @@
 package me.liangfei.areapicker.sample
 
+import android.database.Observable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
+import me.liangfei.areapicker.sample.databinding.FragmentSample1Binding
 
 /**
  * Created by LIANG.FEI on 22/1/2019.
@@ -15,6 +18,7 @@ class Sample1Fragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sample1, null, false)
+        val binding = FragmentSample1Binding.inflate(inflater, container, false)
+        return binding.root
     }
 }
