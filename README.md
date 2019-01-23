@@ -1,6 +1,6 @@
 # AndroidAreaPicker
 
-级联选择器
+地址选择器，多种样式
 
-### TODO
-* [ ] 通用化
+## TODO
+* [ ] 基于 FLUX 模式做状态管理
