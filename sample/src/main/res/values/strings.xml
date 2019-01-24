@@ -2,4 +2,7 @@
     <string name="app_name">AreaPicker</string>
 
     <string name="choose_area">Click to choose</string>
+
+    <string name="page_style_1">Style One</string>
+    <string name="page_style_2">Style Two</string>
 </resources>

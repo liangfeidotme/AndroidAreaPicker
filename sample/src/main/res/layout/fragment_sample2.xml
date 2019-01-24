@@ -7,7 +7,7 @@
 
         <variable
             name="selectedArea"
-            type="androidx.databinding.ObservableField<String>" />
+            type="androidx.databinding.ObservableField&lt;String>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

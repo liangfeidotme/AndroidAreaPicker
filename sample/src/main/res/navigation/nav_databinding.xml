@@ -6,9 +6,9 @@
     <fragment
         android:id="@+id/sample1Fragment"
         android:name="me.liangfei.areapicker.sample.Sample1Fragment"
-        android:label="Sample1Fragment" />
+        android:label="@string/page_style_1" />
     <fragment
         android:id="@+id/sample2Fragment"
         android:name="me.liangfei.areapicker.sample.Sample2Fragment"
-        android:label="Sample2Fragment" />
+        android:label="@string/page_style_2" />
 </navigation>
