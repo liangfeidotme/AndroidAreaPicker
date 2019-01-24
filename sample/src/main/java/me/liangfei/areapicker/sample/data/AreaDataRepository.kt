@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import me.liangfei.areapicker.RFAreaModel
-import me.liangfei.areapicker.sample.App
 import me.liangfei.areapicker.sample.utils.FileUtils
 
 /**

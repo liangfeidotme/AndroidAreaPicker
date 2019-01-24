@@ -1,4 +1,4 @@
-package me.liangfei.areapicker.old;
+package me.liangfei.areapicker.deprecated;
 
 
 public interface OnAreaPickedListener {

@@ -1,4 +1,4 @@
-package me.liangfei.areapicker.old;
+package me.liangfei.areapicker.deprecated;
 
 import android.os.Bundle;
 import androidx.fragment.app.ListFragment;

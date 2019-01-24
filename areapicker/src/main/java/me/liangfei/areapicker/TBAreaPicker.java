@@ -1,4 +1,4 @@
-package me.liangfei.areapicker.light;
+package me.liangfei.areapicker;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
-public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChangeListener {
+public class TBAreaPicker extends LinearLayout implements NumberPicker.OnValueChangeListener {
     private static final String TAG = "RFAreaPicker";
 
     private static final int MAX_LEVEL = 3;
@@ -18,15 +18,15 @@ public class AreaPicker extends LinearLayout implements NumberPicker.OnValueChan
     private NumberPicker[] allNumberPickers;
     private OnAreaChangeListener areaChangeListener;
 
-    public AreaPicker(Context context) {
+    public TBAreaPicker(Context context) {
         this(context, null);
     }
 
-    public AreaPicker(Context context, AttributeSet attrs) {
+    public TBAreaPicker(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AreaPicker(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TBAreaPicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
