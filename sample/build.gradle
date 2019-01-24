@@ -45,4 +45,5 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
 }

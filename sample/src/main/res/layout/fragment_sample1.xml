@@ -5,11 +5,18 @@
 
     <data>
 
-        <import type="androidx.databinding.ObservableField" />
+        <import type="me.liangfei.areapicker.sample.viewmodels.AreaViewModel" />
+
+        <import type="android.view.View.OnClickListener" />
 
         <variable
-            name="choosedAddress"
-            type="ObservableField<String>" />
+            name="viewmodel"
+            type="AreaViewModel" />
+
+        <variable
+            name="chooseAreaClickListener"
+            type="OnClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:onClick="@{chooseAreaClickListener}"
             android:text="@string/choose_area"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@{choosedAddress}"
+            android:text="@{viewmodel.selectedArea}"
             app:layout_constraintBottom_toBottomOf="@+id/materialButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/materialButton"

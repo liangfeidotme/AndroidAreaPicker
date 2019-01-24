@@ -26,8 +26,9 @@ android {
 
 dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    implementation "androidx.appcompat:appcompat:$rootProject.androidxVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.androidxVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
 }
 

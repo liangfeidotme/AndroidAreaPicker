@@ -12,6 +12,8 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import me.liangfei.areapicker.R;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,8 +24,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.liangfeizc.areapicker.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
