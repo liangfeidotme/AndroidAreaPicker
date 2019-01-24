@@ -1,8 +1,15 @@
 # AndroidAreaPicker
 
-> under deployment now.
+**under deployment now**.
 
-地址选择器，多种样式
+An area picker providing multiple styles.
 
-## TODO
+## Style 1
+> まだ
+
+## Style 2
+> まだ
+
+## TODO (for me)
 * [ ] 基于 FLUX 模式做状态管理
+* [ ] 抽象多级选择的通用功能
